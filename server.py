@@ -12,6 +12,9 @@ def analyze():
     text_to_analyze = request.args.get("textToAnalyze")
     response = emotion_detector(text_to_analyze)
     
+    if response["dominant_emotion"] == None:
+        return "Invalid text! Please try again!"
+
     anger = f"'anger': {response['anger']}"
     disgust = f"'disgust': {response['disgust']}"
     fear = f"'fear': {response['fear']}"
